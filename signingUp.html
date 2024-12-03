@@ -69,10 +69,37 @@
         .error {
             color: red;
         }
+
+        /* Style for back navigation link */
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #204bb3;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Style for password toggle */
+        .toggle-password {
+            margin-top: -10px;
+            margin-bottom: 15px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .toggle-password input {
+            margin-right: 5px;
+        }
     </style>
 </head>
 <body>
-
     <div class="form-container">
         <h1>Sign Up</h1>
         <form id="signup-form">
@@ -85,11 +112,18 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" placeholder="Enter your password" required>
 
+            <div class="toggle-password">
+                <input type="checkbox" id="toggle-password">
+                <label for="toggle-password">Show Password</label>
+            </div>
+
             <button type="submit">Sign Up</button>
         </form>
         <div id="message" class="message"></div>
+
+        <a href="AniQuest.html" class="back-link">Back to Home</a>
     </div>
 
-    <script src="script.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>

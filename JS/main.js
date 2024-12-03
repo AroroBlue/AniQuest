@@ -1,3 +1,5 @@
+
+
 // Wait for the DOM to load before executing scripts
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize functionalities
@@ -48,9 +50,28 @@ function initializeSignupForm() {
             setTimeout(() => {
                 window.location.href = 'welcome.html'; // Redirect after showing the success message
             }, 1500);
-        });
+            
+            // Password visibility toggle
+            if (togglePassword) {
+                togglePassword.addEventListener('change', () => {
+                    passwordInput.type = togglePassword.checked ? 'text' : 'password';
+                });
+            }
+
+            // Function to display messages
+            function showMessage(message, isError) {
+                messageDiv.textContent = message;
+                messageDiv.className = isError ? 'error' : 'message';
+
+            if (isError) {
+                setTimeout(() => {
+                    messageDiv.textContent = '';
+                    messageDiv.className = '';
+                }, 3000);
+        }
     }
-}
+});
+
 
 /**
  * Initialize search functionality for the animal cards.
