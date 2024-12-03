@@ -125,6 +125,64 @@
         <a href="AniQuest.html" class="back-link">Back to Home</a>
     </div>
 
-    <script src="main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('signup-form');
+            const messageDiv = document.getElementById('message');
+            const passwordInput = document.getElementById('password');
+            const togglePassword = document.getElementById('toggle-password');
+
+            // Handle form submission
+            form.addEventListener('submit', (event) => {
+                event.preventDefault(); // Prevent form submission
+
+                // Get input values
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const password = passwordInput.value.trim();
+
+                // Validate inputs
+                if (!name || !email || !password) {
+                    messageDiv.textContent = 'All fields are required!';
+                    messageDiv.classList.add('error');
+                    return;
+                }
+
+                if (!/\S+@\S+\.\S+/.test(email)) {
+                    messageDiv.textContent = 'Please enter a valid email address!';
+                    messageDiv.classList.add('error');
+                    return;
+                }
+
+                if (password.length < 6) {
+                    messageDiv.textContent = 'Password must be at least 6 characters long!';
+                    messageDiv.classList.add('error');
+                    return;
+                }
+
+                // Simulate saving user data
+                console.log('User signed up:', { name, email });
+
+                // Display success message
+                messageDiv.textContent = 'Sign-up successful! Redirecting to your profile...';
+                messageDiv.classList.remove('error');
+                messageDiv.style.color = 'green';
+
+                // Redirect to profile page after a short delay
+                setTimeout(() => {
+                    window.location.href = 'profile.html'; // Adjust path if necessary
+                }, 2000); // 2-second delay
+            });
+
+            // Toggle password visibility
+            togglePassword.addEventListener('change', () => {
+                if (togglePassword.checked) {
+                    passwordInput.type = 'text';
+                } else {
+                    passwordInput.type = 'password';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
