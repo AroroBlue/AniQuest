@@ -71,6 +71,8 @@ function initializeSignupForm() {
         }
     }
 });
+    }   //idk
+}
 
 
 /**
