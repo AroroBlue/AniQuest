@@ -127,60 +127,80 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const form = document.getElementById('signup-form');
+            const form = document.getElementById('form');
+            const formTitle = document.getElementById('form-title');
+            const formSubmitBtn = document.getElementById('form-submit-btn');
+            const signupFields = document.getElementById('signup-fields');
+            const switchToLogin = document.getElementById('switch-to-login');
+            const switchToSignup = document.getElementById('switch-to-signup');
             const messageDiv = document.getElementById('message');
             const passwordInput = document.getElementById('password');
             const togglePassword = document.getElementById('toggle-password');
 
+            let isLoginMode = false;
+
             // Handle form submission
             form.addEventListener('submit', (event) => {
-                event.preventDefault(); // Prevent form submission
-
-                // Get input values
-                const name = document.getElementById('name').value.trim();
+                event.preventDefault();
                 const email = document.getElementById('email').value.trim();
                 const password = passwordInput.value.trim();
 
-                // Validate inputs
-                if (!name || !email || !password) {
+                if (!email || !password) {
                     messageDiv.textContent = 'All fields are required!';
                     messageDiv.classList.add('error');
                     return;
                 }
 
-                if (!/\S+@\S+\.\S+/.test(email)) {
-                    messageDiv.textContent = 'Please enter a valid email address!';
-                    messageDiv.classList.add('error');
-                    return;
+                if (isLoginMode) {
+                    // Handle login logic
+                    console.log('Logging in with:', { email, password });
+                    messageDiv.textContent = 'Login successful! Redirecting...';
+                } else {
+                    // Handle sign-up logic
+                    const name = document.getElementById('name').value.trim();
+                    if (!name) {
+                        messageDiv.textContent = 'Name is required for sign-up!';
+                        messageDiv.classList.add('error');
+                        return;
+                    }
+                    console.log('Signing up with:', { name, email, password });
+                    messageDiv.textContent = 'Sign-up successful! Redirecting...';
                 }
 
-                if (password.length < 6) {
-                    messageDiv.textContent = 'Password must be at least 6 characters long!';
-                    messageDiv.classList.add('error');
-                    return;
-                }
-
-                // Simulate saving user data
-                console.log('User signed up:', { name, email });
-
-                // Display success message
-                messageDiv.textContent = 'Sign-up successful! Redirecting to your profile...';
                 messageDiv.classList.remove('error');
                 messageDiv.style.color = 'green';
 
-                // Redirect to profile page after a short delay
+                // Redirect after a short delay
                 setTimeout(() => {
-                    window.location.href = 'profile.html'; // Adjust path if necessary
-                }, 2000); // 2-second delay
+                    window.location.href = 'profile.html';
+                }, 2000);
             });
 
             // Toggle password visibility
             togglePassword.addEventListener('change', () => {
-                if (togglePassword.checked) {
-                    passwordInput.type = 'text';
-                } else {
-                    passwordInput.type = 'password';
-                }
+                passwordInput.type = togglePassword.checked ? 'text' : 'password';
+            });
+
+            // Switch to login mode
+            switchToLogin.addEventListener('click', () => {
+                isLoginMode = true;
+                formTitle.textContent = 'Log In';
+                formSubmitBtn.textContent = 'Log In';
+                signupFields.style.display = 'none';
+                switchToLogin.style.display = 'none';
+                switchToSignup.style.display = 'block';
+                messageDiv.textContent = '';
+            });
+
+            // Switch to sign-up mode
+            switchToSignup.addEventListener('click', () => {
+                isLoginMode = false;
+                formTitle.textContent = 'Sign Up';
+                formSubmitBtn.textContent = 'Sign Up';
+                signupFields.style.display = 'block';
+                switchToLogin.style.display = 'block';
+                switchToSignup.style.display = 'none';
+                messageDiv.textContent = '';
             });
         });
     </script>
