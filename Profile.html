@@ -37,13 +37,63 @@
         .logout-btn:hover {
             background-color: #ff6347;
         }
+
+        .edit-profile-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ffa500;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .edit-profile-btn:hover {
+            background-color: #ff6347;
+        }
+
+        .profile-details {
+            margin-top: 20px;
+        }
+
+        .profile-details input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 80%;
+            max-width: 400px;
+        }
+
+        .profile-details button {
+            padding: 10px 20px;
+            background-color: #204bb3;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .profile-details button:hover {
+            background-color: #ff6347;
+        }
     </style>
 </head>
 <body>
     <div class="profile-container">
         <h1>Welcome, <span id="username"></span>!</h1>
         <button class="logout-btn" id="logout-button">Log Out</button>
+        <button class="edit-profile-btn" id="edit-profile-btn">Edit Profile</button>
+
+        <div class="profile-details" id="profile-details">
+            <h2>Edit Your Profile</h2>
+            <form id="edit-profile-form">
+                <input type="text" id="edit-name" placeholder="Enter your name">
+                <input type="email" id="edit-email" placeholder="Enter your email">
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
     </div>
+
     <script src="main.js"></script>
 </body>
 </html>
+

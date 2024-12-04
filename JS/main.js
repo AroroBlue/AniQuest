@@ -60,10 +60,13 @@ function populateNavigationBar() {
 
 /**
  * Initialize the profile page functionality.
+ * Displays the logged-in user's name and sets up log-out.
  */
 function initializeProfilePage() {
     const usernameSpan = document.getElementById('username');
     const logoutButton = document.getElementById('logout-button');
+    const profileDetails = document.getElementById('profile-details');
+    const editProfileButton = document.getElementById('edit-profile-btn');
 
     if (usernameSpan && logoutButton) {
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));
