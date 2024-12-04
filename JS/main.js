@@ -1,167 +1,14 @@
 
-
+//this file has: shared or general functionalities: navigation, search, and profile management.
 // Wait for the DOM to load before executing scripts
 document.addEventListener('DOMContentLoaded', () => {
-// Initialize functionalities
-    initializeSignupForm();
     initializeSearch();
     populateNavigationBar();
     initializeProfilePage();
 });
 
 /**
- * Initialize the sign-up form functionality.
- * Validates inputs, shows messages, and simulates form submission.
- */
-function initializeSignupForm() {
-    const form = document.getElementById('form');
-    const formTitle = document.getElementById('form-title');
-    const formSubmitBtn = document.getElementById('form-submit-btn');
-    const signupFields = document.getElementById('signup-fields');
-    const switchToLogin = document.getElementById('switch-to-login');
-    const switchToSignup = document.getElementById('switch-to-signup');
-    const messageDiv = document.getElementById('message');
-    const passwordInput = document.getElementById('password');
-    const togglePassword = document.getElementById('toggle-password');
-
-    let isLoginMode = false;
-
-    // Handle form submission
-    form.addEventListener('submit', (event) => {
-        event.preventDefault();
-
-        const email = document.getElementById('email').value.trim();
-        const password = passwordInput.value.trim();
-
-        if (!email || !password) {
-            showMessage('All fields are required!', true, messageDiv);
-            return;
-        }
-
-        if (isLoginMode) {
-            handleLogin(email, password);
-        } else {
-            const name = document.getElementById('name').value.trim();
-            if (!name) {
-                showMessage('Name is required for sign-up!', true, messageDiv);
-                return;
-            }
-            handleSignUp(name, email, password);
-        }
-    });
-
-    // Toggle password visibility
-    togglePassword.addEventListener('change', () => {
-        passwordInput.type = togglePassword.checked ? 'text' : 'password';
-    });
-
-    // Switch to login mode
-    switchToLogin.addEventListener('click', () => {
-        isLoginMode = true;
-        formTitle.textContent = 'Log In';
-        formSubmitBtn.textContent = 'Log In';
-        signupFields.style.display = 'none';
-        switchToLogin.style.display = 'none';
-        switchToSignup.style.display = 'block';
-        messageDiv.textContent = '';
-    });
-
-    // Switch to sign-up mode
-    switchToSignup.addEventListener('click', () => {
-        isLoginMode = false;
-        formTitle.textContent = 'Sign Up';
-        formSubmitBtn.textContent = 'Sign Up';
-        signupFields.style.display = 'block';
-        switchToLogin.style.display = 'block';
-        switchToSignup.style.display = 'none';
-        messageDiv.textContent = '';
-    });
-
-    /**
-     * Handles user login.
-     * @param {string} email - User's email.
-     * @param {string} password - User's password.
-     */
-    function handleLogin(email, password) {
-        const users = JSON.parse(localStorage.getItem('users')) || [];
-        const user = users.find(u => u.email === email && u.password === password);
-
-        if (user) {
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            showMessage(`Welcome back, ${user.name}! Redirecting...`, false, messageDiv);
-            setTimeout(() => window.location.href = 'profile.html', 1500);
-        } else {
-            showMessage('Invalid email or password. Please try again.', true, messageDiv);
-        }
-    }
-
-    /**
-     * Handles user sign-up.
-     * @param {string} name - User's name.
-     * @param {string} email - User's email.
-     * @param {string} password - User's password.
-     */
-    function handleSignUp(name, email, password) {
-        const users = JSON.parse(localStorage.getItem('users')) || [];
-        const userExists = users.some(u => u.email === email);
-
-        if (userExists) {
-            showMessage('This email is already registered. Please log in.', true, messageDiv);
-            return;
-        }
-
-        const newUser = { name, email, password };
-        users.push(newUser);
-        localStorage.setItem('users', JSON.stringify(users));
-        localStorage.setItem('currentUser', JSON.stringify(newUser));
-        showMessage('Sign-up successful! Redirecting...', false, messageDiv);
-        setTimeout(() => window.location.href = 'profile.html', 1500);
-    }
-
-    /**
-     * Displays a message in the message div.
-     * @param {string} text - The message text.
-     * @param {boolean} isError - True if the message is an error, false otherwise.
-     * @param {HTMLElement} target - The message display element.
-     */
-    function showMessage(text, isError, target) {
-        target.textContent = text;
-        target.className = isError ? 'error' : 'success';
-
-        if (isError) {
-            setTimeout(() => {
-                target.textContent = '';
-                target.className = '';
-            }, 3000);
-        }
-    }
-}
-
-/**
- * Initialize the profile page functionality.
- * Displays the logged-in user's name and sets up log-out.
- */
-function initializeProfilePage() {
-    const usernameSpan = document.getElementById('username');
-    const logoutButton = document.getElementById('logout-button');
-
-    if (usernameSpan && logoutButton) {
-        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        if (!currentUser) {
-            window.location.href = 'AniQuest.html'; // Redirect to home if not logged in
-        } else {
-            usernameSpan.textContent = currentUser.name; // Display user name
-            logoutButton.addEventListener('click', () => {
-                localStorage.removeItem('currentUser'); // Clear current user
-                window.location.href = 'AniQuest.html'; // Redirect to home page
-            });
-        }
-    }
-}
-
-/**
  * Initialize search functionality for the animal cards.
- * Filters animal cards based on user input.
  */
 function initializeSearch() {
     const searchButton = document.querySelector('#search-btn');
@@ -211,6 +58,26 @@ function populateNavigationBar() {
     }
 }
 
+/**
+ * Initialize the profile page functionality.
+ */
+function initializeProfilePage() {
+    const usernameSpan = document.getElementById('username');
+    const logoutButton = document.getElementById('logout-button');
+
+    if (usernameSpan && logoutButton) {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser) {
+            window.location.href = 'AniQuest.html'; // Redirect to home if not logged in
+        } else {
+            usernameSpan.textContent = currentUser.name; // Display user name
+            logoutButton.addEventListener('click', () => {
+                localStorage.removeItem('currentUser'); // Clear current user
+                window.location.href = 'AniQuest.html'; // Redirect to home page
+            });
+        }
+    }
+}
 /*
  * Show a message in a target div with error or success styling.
  * @param {string} message - The message to display.
