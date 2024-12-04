@@ -61,26 +61,20 @@
             background-color: #ff6347;
         }
 
-        .message {
+        .navigation-links {
             text-align: center;
-            margin-top: 10px;
-            color: green;
+            margin-top: 20px;
         }
 
-        .error {
-            color: red;
-        }
-
-        .signup-link {
+        .navigation-links a {
             display: block;
-            text-align: center;
-            margin: 15px auto;
+            margin: 5px 0;
             color: #204bb3;
             text-decoration: none;
             font-size: 14px;
         }
 
-        .signup-link:hover {
+        .navigation-links a:hover {
             text-decoration: underline;
         }
 
@@ -108,7 +102,6 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" placeholder="Enter your password" required>
 
-            <!-- Show Password Option -->
             <div class="toggle-password">
                 <input type="checkbox" id="toggle-password">
                 <label for="toggle-password">Show Password</label>
@@ -117,12 +110,16 @@
             <button type="submit">Log In</button>
         </form>
         <div id="message" class="message"></div>
-        
-        <!-- Link to Sign-Up page -->
-        <a href="signup.html" class="signup-link">Don't have an account? Sign Up</a>
+
+        <!-- Navigation Links -->
+        <div class="navigation-links">
+            <a href="signup.html">Don't have an account? Sign Up</a>
+            <a href="AniQuest.html">Go to Home</a>
+        </div>
     </div>
 
     <script src="login.js"></script>
 </body>
 </html>
+
 
