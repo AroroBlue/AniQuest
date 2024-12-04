@@ -39,6 +39,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1500);
     });
 
+    function saveUserLocally(name, email, password) {
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        users.push({ name, email, password }); // Add the new user
+        localStorage.setItem('users', JSON.stringify(users)); // Save all users
+    
+        // Set the current user to simulate a login
+        localStorage.setItem('currentUser', JSON.stringify({ name, email }));
+    }
+
     // Show messages
     function showMessage(message, isError) {
         messageDiv.textContent = message;

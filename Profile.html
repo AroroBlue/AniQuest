@@ -3,42 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Profile</title>
+    <title>Profile</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f8ff;
+            background-color: #f6aeaf;
             color: #333;
             margin: 0;
             padding: 20px;
             text-align: center;
         }
 
-        h1 {
-            color: #204bb3;
+        .profile-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
-        p {
-            font-size: 18px;
-            color: #555;
-        }
-
-        .back-link {
-            display: block;
+        .logout-btn {
+            display: inline-block;
             margin-top: 20px;
-            font-size: 16px;
-            color: #204bb3;
-            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #204bb3;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
 
-        .back-link:hover {
-            text-decoration: underline;
+        .logout-btn:hover {
+            background-color: #ff6347;
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to Your Profile</h1>
-    <p>Thank you for signing up, <strong>User</strong>!</p>
-    <a href="AniQuest.html" class="back-link">Go back to the home page</a>
+    <div class="profile-container">
+        <h1>Welcome, <span id="username"></span>!</h1>
+        <button class="logout-btn" id="logout-button">Log Out</button>
+    </div>
+    <script src="main.js"></script>
 </body>
 </html>

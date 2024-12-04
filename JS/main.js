@@ -2,10 +2,11 @@
 
 // Wait for the DOM to load before executing scripts
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize functionalities
+// Initialize functionalities
     initializeSignupForm();
     initializeSearch();
     populateNavigationBar();
+    initializeProfilePage();
 });
 
 /**
@@ -86,6 +87,7 @@ function initializeSignupForm() {
         const user = users.find(u => u.email === email && u.password === password);
 
         if (user) {
+            localStorage.setItem('currentUser', JSON.stringify(user));
             showMessage(`Welcome back, ${user.name}! Redirecting...`, false, messageDiv);
             setTimeout(() => window.location.href = 'profile.html', 1500);
         } else {
@@ -108,8 +110,10 @@ function initializeSignupForm() {
             return;
         }
 
-        users.push({ name, email, password });
+        const newUser = { name, email, password };
+        users.push(newUser);
         localStorage.setItem('users', JSON.stringify(users));
+        localStorage.setItem('currentUser', JSON.stringify(newUser));
         showMessage('Sign-up successful! Redirecting...', false, messageDiv);
         setTimeout(() => window.location.href = 'profile.html', 1500);
     }
@@ -129,6 +133,28 @@ function initializeSignupForm() {
                 target.textContent = '';
                 target.className = '';
             }, 3000);
+        }
+    }
+}
+
+/**
+ * Initialize the profile page functionality.
+ * Displays the logged-in user's name and sets up log-out.
+ */
+function initializeProfilePage() {
+    const usernameSpan = document.getElementById('username');
+    const logoutButton = document.getElementById('logout-button');
+
+    if (usernameSpan && logoutButton) {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (!currentUser) {
+            window.location.href = 'AniQuest.html'; // Redirect to home if not logged in
+        } else {
+            usernameSpan.textContent = currentUser.name; // Display user name
+            logoutButton.addEventListener('click', () => {
+                localStorage.removeItem('currentUser'); // Clear current user
+                window.location.href = 'AniQuest.html'; // Redirect to home page
+            });
         }
     }
 }
@@ -159,7 +185,6 @@ function initializeSearch() {
                 }
             });
 
-            // Show an alert if no cards match the query
             if (!found) {
                 alert('No results found for your search.');
             }
@@ -186,26 +211,22 @@ function populateNavigationBar() {
     }
 }
 
-/**
+/*
  * Show a message in a target div with error or success styling.
  * @param {string} message - The message to display.
  * @param {boolean} isError - True if it's an error message, false if success.
  * @param {HTMLElement} targetDiv - The div to display the message in.
  */
+/**
 function showMessage(message, isError, targetDiv) {
-    targetDiv.textContent = message;
+   targetDiv.textContent = message;
     targetDiv.className = isError ? 'error' : 'success';
 }
 
-/**
- * Save user data locally in the browser's localStorage.
- * @param {string} name - User's name.
- * @param {string} email - User's email.
- * @param {string} password - User's password.
- */
+/*
 function saveUserLocally(name, email, password) {
     const users = JSON.parse(localStorage.getItem('users')) || [];
     users.push({ name, email, password });
     localStorage.setItem('users', JSON.stringify(users));
 }
-
+    */
