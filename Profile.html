@@ -4,96 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f6aeaf;
-            color: #333;
-            margin: 0;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .profile-container {
-            max-width: 600px;
-            margin: 50px auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .logout-btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #204bb3;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .logout-btn:hover {
-            background-color: #ff6347;
-        }
-
-        .edit-profile-btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background-color: #ffa500;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .edit-profile-btn:hover {
-            background-color: #ff6347;
-        }
-
-        .profile-details {
-            margin-top: 20px;
-        }
-
-        .profile-details input {
-            padding: 10px;
-            margin: 10px 0;
-            width: 80%;
-            max-width: 400px;
-        }
-
-        .profile-details button {
-            padding: 10px 20px;
-            background-color: #204bb3;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-        }
-
-        .profile-details button:hover {
-            background-color: #ff6347;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css"> <!-- Link to the shared CSS file -->
 </head>
 <body>
-    <div class="profile-container">
-        <h1>Welcome, <span id="username"></span>!</h1>
-        <button class="logout-btn" id="logout-button">Log Out</button>
-        <button class="edit-profile-btn" id="edit-profile-btn">Edit Profile</button>
+    <!-- Toolbar -->
+    <div class="toolbar">
+        <a href="AniQuest.html">Home</a>
+        <a href="signup.html">Sign up</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+    </div>
 
-        <div class="profile-details" id="profile-details">
-            <h2>Edit Your Profile</h2>
-            <form id="edit-profile-form">
-                <input type="text" id="edit-name" placeholder="Enter your name">
-                <input type="email" id="edit-email" placeholder="Enter your email">
+    <div class="container">
+        <h1>Welcome, <span id="username">User</span>!</h1>
+        <button id="logout-button">Log Out</button>
+
+        <!-- Profile Settings Section -->
+        <div class="section">
+            <h2>Profile Settings</h2>
+            <form id="settings-form">
+                <div class="input-group">
+                    <label for="new-email">Update Email:</label>
+                    <input type="email" id="new-email" placeholder="Enter new email">
+                </div>
+                <div class="input-group">
+                    <label for="new-password">Change Password:</label>
+                    <input type="password" id="new-password" placeholder="Enter new password">
+                </div>
                 <button type="submit">Save Changes</button>
             </form>
+        </div>
+
+        <!-- Pet Profile Section -->
+        <div class="section pet-profile">
+            <h2>Your Pets</h2>
+            <div id="pet-list">
+                <!-- Dynamic pet profiles will appear here -->
+            </div>
+            <button id="add-pet-btn">Add New Pet</button>
+        </div>
+
+        <!-- Add Pet Form -->
+        <div class="section" id="add-pet-form" style="display: none;">
+            <h2>Add a New Pet</h2>
+            <form id="pet-form">
+                <div class="input-group">
+                    <label for="pet-name">Pet Name:</label>
+                    <input type="text" id="pet-name" placeholder="Enter pet's name">
+                </div>
+                <div class="input-group">
+                    <label for="pet-type">Pet Type:</label>
+                    <select id="pet-type">
+                        <option value="dog">Dog</option>
+                        <option value="cat">Cat</option>
+                        <option value="bird">Bird</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="pet-age">Pet Age:</label>
+                    <input type="number" id="pet-age" placeholder="Enter pet's age">
+                </div>
+                <div class="input-group">
+                    <label for="pet-description">Description:</label>
+                    <textarea id="pet-description" rows="4" placeholder="Write a brief description about your pet"></textarea>
+                </div>
+                <button type="submit">Save Pet</button>
+            </form>
+        </div>
+
+        <!-- Danger Zone -->
+        <div class="danger-zone">
+            <h2>Danger Zone</h2>   <!--change to h3 -->
+            <button id="delete-profile-btn">Delete Profile</button>
         </div>
     </div>
 
     <script src="main.js"></script>
 </body>
 </html>
-

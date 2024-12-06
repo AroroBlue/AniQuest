@@ -1,10 +1,9 @@
-
-//this file has: shared or general functionalities: navigation, search, and profile management.
 // Wait for the DOM to load before executing scripts
 document.addEventListener('DOMContentLoaded', () => {
     initializeSearch();
     populateNavigationBar();
     initializeProfilePage();
+    initializeLoginPage();
 });
 
 /**
@@ -74,29 +73,50 @@ function initializeProfilePage() {
             window.location.href = 'AniQuest.html'; // Redirect to home if not logged in
         } else {
             usernameSpan.textContent = currentUser.name; // Display user name
+
             logoutButton.addEventListener('click', () => {
                 localStorage.removeItem('currentUser'); // Clear current user
+                alert("You have been logged out.");
                 window.location.href = 'AniQuest.html'; // Redirect to home page
             });
+
+            // Edit Profile Button Logic
+            if (editProfileButton) {
+                editProfileButton.addEventListener('click', () => {
+                    profileDetails.style.display =
+                        profileDetails.style.display === 'none' ? 'block' : 'none';
+                });
+            }
         }
     }
 }
-/*
- * Show a message in a target div with error or success styling.
- * @param {string} message - The message to display.
- * @param {boolean} isError - True if it's an error message, false if success.
- * @param {HTMLElement} targetDiv - The div to display the message in.
- */
-/**
-function showMessage(message, isError, targetDiv) {
-   targetDiv.textContent = message;
-    targetDiv.className = isError ? 'error' : 'success';
-}
 
-/*
-function saveUserLocally(name, email, password) {
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    users.push({ name, email, password });
-    localStorage.setItem('users', JSON.stringify(users));
+/**
+ * Initialize the login page functionality.
+ * Redirects the user to the profile page upon successful login.
+ */
+function initializeLoginPage() {
+    const loginButton = document.getElementById('login-button');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+
+    if (loginButton && usernameInput && passwordInput) {
+        loginButton.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent form submission
+
+            const username = usernameInput.value.trim();
+            const password = passwordInput.value.trim();
+
+            // Example validation: Replace this with your actual backend authentication
+            if (username === 'testuser' && password === 'password123') {
+                const currentUser = { name: username };
+                localStorage.setItem('currentUser', JSON.stringify(currentUser)); // Save user to localStorage
+
+                alert("Login successful!");
+                window.location.href = 'profile.html'; // Redirect to profile page
+            } else {
+                alert("Invalid username or password. Please try again.");
+            }
+        });
+    }
 }
-    */
