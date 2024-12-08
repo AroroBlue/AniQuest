@@ -4,95 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log In</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f6aeaf;
-            color: #333;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
-        .form-container {
-            background-color: #ffffff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #204bb3;
-        }
-
-        label {
-            display: block;
-            margin: 10px 0 5px;
-            font-weight: bold;
-        }
-
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-
-        button {
-            width: 100%;
-            padding: 10px;
-            background-color: #204bb3;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #ff6347;
-        }
-
-        .navigation-links {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .navigation-links a {
-            display: block;
-            margin: 5px 0;
-            color: #204bb3;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        .navigation-links a:hover {
-            text-decoration: underline;
-        }
-
-        .toggle-password {
-            margin-top: -10px;
-            margin-bottom: 15px;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-        }
-
-        .toggle-password input {
-            margin-right: 5px;
-        }
-    </style>
 </head>
-<body>
+<body class="auth-body">
     <div class="form-container">
         <h1>Log In</h1>
         <form id="login-form">
@@ -100,11 +18,9 @@
             <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" placeholder="Enter your password" required>
-
-            <div class="toggle-password">
-                <input type="checkbox" id="toggle-password">
-                <label for="toggle-password">Show Password</label>
+            <div class="password-container">
+                <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                <span id="toggle-password" class="toggle-password">Show Password</span>
             </div>
 
             <button type="submit">Log In</button>
@@ -118,10 +34,16 @@
         </div>
     </div>
 
-    <script src="main.js"></script>
-    <script src="login.js"></script>
+    <script>
+        // Toggle password visibility
+        const togglePassword = document.getElementById('toggle-password');
+        const passwordInput = document.getElementById('password');
 
+        togglePassword.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            togglePassword.textContent = type === 'password' ? 'Show Password' : 'Hide Password';
+        });
+    </script>
 </body>
 </html>
-
-

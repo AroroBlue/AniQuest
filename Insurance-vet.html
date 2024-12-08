@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Insurance & Vet Connection</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to external CSS -->
+</head>
+<body>
+    <!-- Toolbar -->
+    <div class="toolbar">
+        <a href="AniQuest.html">Home</a>
+        <a href="signup.html">Sign up</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="contact.html">Contact</a>
+        <a href="insurance-vet.html">Insurance & Vet Info</a>
+
+    </div>
+
+    <!-- Header -->
+    <header>
+        <h1>Pet Insurance & Vet Connection</h1>
+        <p>Find the best care and coverage for your furry friends.</p>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <section>
+            <h2>Pet Insurance</h2>
+            <div class="card">
+                <h3><a href="https://example-insurance.com">Example Pet Insurance</a></h3>
+                <p>Comprehensive coverage for all your pet's needs. Starting at $15/month.</p>
+            </div>
+            <div class="card">
+                <h3><a href="https://another-insurance.com">Another Insurance Provider</a></h3>
+                <p>Affordable plans with flexible options for dogs and cats.</p>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="pet-age">Enter your pet's age:</label>
+                    <input type="number" id="pet-age" placeholder="Pet age in years">
+                </div>
+                <div class="form-group">
+                    <label for="coverage">Select coverage type:</label>
+                    <select id="coverage">
+                        <option value="basic">Basic</option>
+                        <option value="comprehensive">Comprehensive</option>
+                        <option value="premium">Premium</option>
+                    </select>
+                </div>
+                <button type="submit">Get Estimate</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Find a Vet</h2>
+            <div class="form-group">
+                <label for="location">Enter your location:</label>
+                <input type="text" id="location" placeholder="City or ZIP code">
+            </div>
+            <button id="search-vets">Search for Vets</button>
+            <div id="vet-results">
+                <!-- Results will be dynamically loaded here -->
+            </div>
+        </section>
+    </div>
+</body>
+<script src="insurance-vet.js"></script>
+</html>
+
