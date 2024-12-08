@@ -4,7 +4,29 @@
 document.addEventListener('DOMContentLoaded', () => {
     initializeSignupForm();
 });
+<syle>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f6aeaf;
+        color: #333;
+        margin: 0;
+        padding: 0; /* Remove any extra padding */
+        display: flex;
+        justify-content: center; /* Horizontal centering */
+        align-items: center; /* Vertical centering */
+        height: 100vh; /* Make the body take up the full viewport height */
+    }
 
+    .form-container {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+    }
+
+</syle>
 /**
  * Initialize the sign-up form functionality.
  */
