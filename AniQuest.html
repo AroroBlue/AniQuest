@@ -4,41 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logo and Toolbar</title>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script src="firebase-config.js"></script>
-
     <style>
         /* Style the header to use flexbox */
         .header {
             display: flex; /* Use flexbox layout */
             align-items: center; /* Center items vertically */
-            background-color: #f6aeaf; /* Example header color */
-            /* padding: 0px; Padding for the header */
+            background-color: #f6aeaf;
+            /* padding: 10px;  Padding for the header */
         }
-
         /* Style the logo */
         .logo img {
-            width: 200px; /* Set the width of the logo (adjust as needed) */
+            width: 200px; /* Set the width of the logo */
             height: 200px; /* Maintain aspect ratio */
             margin-right: 10px; /* Space between logo and text */
         }
-
         h1 {
             margin: 0; /* Remove default margin */
-            font-size: 40px; /* Title font size */
+            font-size: 30px; /* Title font size */
             color: #ff6347; /* Title color */
             font-family: Arial, sans-serif; /* Ensure title uses Arial */
-        }
+            margin-bottom: 20px; /* Space between block elements */
 
+        }
         h2 {
             margin: 0; /* Remove default margin */
             font-size: 36px; /* Slogan font size */
-            color: #93d1fa; /* Slogan color */
+            color: #333; /* Slogan color */
             font-family: Arial, sans-serif; /* Ensure title uses Arial */
         }
-
         /* Animal cards container */
         .animal-cards {
             display: flex;
@@ -49,7 +42,6 @@
             text-decoration: none; /* Remove underline */
             color: inherit; /* Keep the color of the text from the parent element */
         }
-
         .animal-card h3, .animal-card p {
             text-decoration: none; /* Remove underline for both heading and paragraph text */
             color: #204bb3; /* Ensure color for the text */
@@ -58,7 +50,7 @@
         /* Style individual animal cards */
         .animal-card {
             background-color: #93d1fa;
-            border: 4px solid #204bb3;
+            border: 4px solid #ff914d;
             border-radius: 8px;
             width: 250px;
             text-align: center;
@@ -66,36 +58,30 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s;
         }
-
         .animal-card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
             border-radius: 8px;
         }
-
         .animal-card h3 {
             font-size: 20px;
-            color: #204bb3;
+            color: #333;
             margin: 10px 0;
         }
-
         .animal-card p {
             font-size: 16px;
             color: #333;
         }
-
         /* Hover effect on cards */
         .animal-card:hover {
             transform: scale(1.05);
         }
-
         body {
             font-family: Arial, sans-serif; /* Set font to Arial, consistent with About page */
-            background-color: #e6e2e2; /* Change this to your desired color f6aeaf */
+            background-color: #f2ebe1;
             color: #333; /* Change text color for better visibility */
         }
-
         /* Toolbar (navigation bar) */
         .toolbar {
             display: flex;
@@ -105,21 +91,56 @@
             background-color: #f6aeaf; /* Fill the toolbar with a background color */
             padding: 10px 0;  /* Space above and below the links */
         }
-
         /* Links inside the toolbar */
         .toolbar a {
             text-decoration: none;  /* Remove underline */
-            color: #004aad;  /* Dark text color */
+            color: #204bb3;  /* Dark text color */
             font-weight: bold;
             font-size: 20px;
             flex: 1; /* Allow links to grow and fill space */
             text-align: center; /* Center the text in each link */
-
         }
-
         /* Change link color on hover */
         .toolbar a:hover {
             color: #ff6347;
+        }
+
+        /* About Us styles */
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            background: white;
+            padding: 60px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-top: 30px; /* Add space between the container and the toolbar */
+            line-height: 1.6; /* Adjust line spacing within paragraphs */
+
+        }
+        h4 {
+            text-align: left;
+            color: #93d1fa; /* Title color consistent with home page */
+            font-size: 32px;
+        }
+        .about-container h1 {
+            text-align: center;
+            color: #ff6347; /* Title color consistent with home page */
+        }
+
+        about-container h2 {
+            color: #93d1fa; /* Subtitle color */
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 10px; /* Space between block elements */
+
+        }
+        .mission {
+            background-color: #e0f7fa; /* Light blue background */
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
         }
         
         /* Footer */
@@ -131,22 +152,6 @@
     </style>
 </head>
 <body>
-
-     <!--java script thing-->
-     <script src="main.js"></script>
-     <script src="firebase-config.js"></script>
-
-     <!--searching functionality
-     <div>
-        <input type="text" id="search" placeholder="Search animals...">
-        <button id="search-btn">Search</button>
-    </div> -->
-
-    
-    <div class="animal-cards" id="animal-cards">
-        <!-- Existing animal cards -->
-    </div>
-
     <!-- Header containing the logo and title -->
     <div class="header">
         <!-- Logo at the top corner -->
@@ -158,16 +163,54 @@
             <h2>Who will you meet on your quest</h2>
         </div>
     </div>
-
-    <!-- Toolbar with links -->
+    <!-- Toolbar with links and a line underneath -->
     <div class="toolbar">
-        <a href="AniQuest.html">Home</a>
         <a href="signup.html">Sign up</a>
         <a href="about.html">About</a>
         <a href="services.html">Services</a>
         <a href="contact.html">Contact</a>
         <a href="insurance-vet.html">Insurance & Vet Info</a>
     </div>
+
+        <!-- About Section -->
+    <div class="container">
+        <h1>About Us</h1>
+        
+        <div class="mission">
+            <h4>Our Mission</h4>
+            <p>At AniQuest Animal Shelter, we are dedicated to rescuing, rehabilitating, and rehoming abandoned and neglected animals. Our mission is to provide a safe haven for animals in need and to promote responsible pet ownership within our community.</p>
+        </div>
+
+        <h4>Who We Are</h4>
+        <p>AniQuest is a website that connects many animal shelters around the U.S. with people who are looking to adopt and rescue animals. Our goal is to streamline the adoption process and help find loving homes for as many animals as possible.</p>
+        <p>Founded in 2020 by a group of passionate animal lovers, our team consists of volunteers, foster families, and animal care professionals who work tirelessly to ensure that every animal receives the love and care they deserve.</p>
+
+        <h4>What We Do</h4>
+        <p>We provide shelter, medical care, and training for our animals while actively seeking loving homes for them. We also engage with the community through educational programs about animal care and welfare, helping to create a more compassionate world for our furry friends.</p>
+
+        <h4>Get Involved</h4>
+        <p>Your support can make a significant difference in the lives of our animals. Whether you choose to volunteer, foster a pet, or make a donation, you are helping us fulfill our mission of finding forever homes for animals in need.</p>
+
+    </div>
+
+    <div class="container">
+        <h1>Services</h1>
+        
+        <h4>Adoption Services</h4>
+        <p>We help connect people with animals in need of a loving home. Our adoption services include assistance with matching you with the right pet and guiding you through the adoption process..</p>
+
+        <h4>Fostering</h4>
+        <p>Foster a pet in need! Fostering provides a temporary home for animals who are awaiting adoption. It's a rewarding experience that helps animals adjust and prepares them for their forever homes.</p>
+        
+        <h4>Volunteer Opportunities</h4>
+        <p>Looking to make a difference? Our shelters offers volunteer opportunities where you can spend time caring for animals, assisting with events, and helping in day-to-day operations at the shelter.</p>
+
+        <h4>Animal Care & Education</h4>
+        <p>We provide educational resources and workshops for pet owners, as well as expert advice on animal care. Our goal is to support you in giving your pet the best life possible.</p>
+
+        <h4>A profile with all you need</h4>
+        <p>We made a platform where you can make a profile for you and your pet, find the best insurance plan and Vets for them.</p>
+
 
     <div class="animal-cards">
         <!-- Card for Animal 1 -->
@@ -177,16 +220,13 @@
             <p>A friendly dog looking for a loving home.</p>
             <a href="Max.html">Learn more about Max</a> <!-- Only this text is hyperlinked -->
     </div>
-
             <!-- Card for Animal 2 -->
     <div class="animal-card">
-        <img src="/Users/arubsumayli/Desktop/AniQuest/Luna.jpng" alt="Luna">
+        <img src="/Users/arubsumayli/Desktop/AniQuest/Luna.jpeg" alt="Luna">
         <h3>Luna</h3>
         <p>A playful cat who loves cuddles and attention.</p>
         <a href="Luna.html">Learn more about Luna</a>
     </div>
-
-
             <!-- Card for Animal 2 -->
     <div class="animal-card">
         <img src="/Users/arubsumayli/Desktop/AniQuest/Bella.jpg" alt="Bella">
@@ -194,7 +234,6 @@
         <p>A sweet rabbit that enjoys quiet time and treats.</p>
         <a href="Bella.html">Learn more about Bella</a>
     </div>
-
         <!-- Add more animal cards as needed -->
     </div>
 
@@ -202,6 +241,16 @@
     <div class="footer">
         <p>&copy; 2024 AniQuest. All rights reserved.</p>
     </div>
-
 </body>
 </html>
+
+    <!-- contact us 
+
+<h2>Contact Us</h2>
+<p>If you would like to learn more about our shelter, adopt a pet, or get involved, please contact us at:</p>
+<p>Email: <a href="mailto:info@aniquest.org">info@aniquestshelter.org</a><br>
+Phone: (123) 456-7890</p>
+
+-->
+
+<!-- have a ready to adopt title and a box containing the animal cards-->

@@ -1,7 +1,7 @@
 /* General Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f6aeaf;
+    background-color: #f2ebe1;
     color: #333;
     margin: 0;
     padding: 20px;
@@ -20,21 +20,21 @@ body {
 .toolbar {
     display: flex;
     justify-content: space-around;
-    background-color: #204bb3;
+    background-color: #f6aeaf;
     padding: 10px 0;
     margin-bottom: 20px;
 }
 
 .toolbar a {
     text-decoration: none;
-    color: #93d1fa;
+    color: #204bb3;
     font-weight: bold;
     font-size: 20px;
     text-align: center;
 }
 
 .toolbar a:hover {
-    color: #f2ebe1;
+    color: #ff6347;
 }
 
 /* Header */
