@@ -35,6 +35,7 @@
 
         <!-- Navigation Links -->
         <div class="navigation-links">
+
             <a href="login.html">Already have an account? Log In</a>
             <a href="AniQuest.html">Go to Home</a>
         </div>
@@ -53,6 +54,37 @@
                 showPasswordText.textContent = 'Show Password';
             }
         }
+        import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
+        document.getElementById('signup-form').addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent the default form submission
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Validate inputs
+            if (!name || !email || !password) {
+                alert('Please fill out all fields.');
+                return;
+            }
+
+            try {
+                // Create user with Firebase
+                const auth = getAuth();
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+
+                // Optionally save user name or other details to Firestore
+                console.log("User signed up successfully:", userCredential.user);
+
+                // Redirect to the profile page
+            window.location.href = 'profile.html';
+            } catch (error) {
+                console.error("Error during sign-up:", error.message);
+                alert(error.message);
+            }
+        });
+
     </script>
 </body>
 </html>
